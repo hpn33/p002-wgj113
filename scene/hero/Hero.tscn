@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scene/hero/Hero.gd" type="Script" id=1]
+[ext_resource path="res://scene/hero/movement.gd" type="Script" id=2]
+[ext_resource path="res://scene/hero/gravity.gd" type="Script" id=3]
+[ext_resource path="res://scene/hero/jump.gd" type="Script" id=4]
+[ext_resource path="res://scene/hero/Pivot.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprite/hero.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprite/dot.png" type="Texture" id=7]
+[ext_resource path="res://scene/hero/Punch.gd" type="Script" id=8]
+[ext_resource path="res://scene/hero/FloorDetector.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48.4421, 64.1434 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 38, 38 )
+
+[node name="Hero" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="movement" type="Node" parent="."]
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="gravity" type="Node" parent="movement"]
+script = ExtResource( 3 )
+gravity = Vector2( 0, 100 )
+
+[node name="jump" type="Node" parent="movement"]
+script = ExtResource( 4 )
+jump = Vector2( 0, -10000 )
+
+[node name="Pivot" type="Node2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 5 )
+
+[node name="Body" type="Sprite" parent="Pivot"]
+texture = ExtResource( 6 )
+
+[node name="Punch" type="Sprite" parent="Pivot"]
+modulate = Color( 0.831373, 0.00784314, 0.00784314, 0.415686 )
+position = Vector2( 100.56, -27.2351 )
+scale = Vector2( 75, 75 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+force = Vector2( 10000, 0 )
+
+[node name="area2d" type="Area2D" parent="Pivot/Punch"]
+scale = Vector2( 0.0133333, 0.0133333 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Punch/area2d"]
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Pivot/Punch"]
+wait_time = 0.05
+one_shot = true
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 64 )
+enabled = true
+exclude_parent = false
+script = ExtResource( 9 )
+
+[connection signal="body_entered" from="Pivot/Punch/area2d" to="Pivot/Punch" method="_on_area2d_body_entered"]
+[connection signal="timeout" from="Pivot/Punch/Timer" to="Pivot/Punch" method="_on_Timer_timeout"]

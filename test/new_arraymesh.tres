@@ -1,0 +1,5 @@
+[gd_resource type="ArrayMesh" format=2]
+
+[resource]
+lightmap_size_hint = Vector2( 1, 1 )
+
