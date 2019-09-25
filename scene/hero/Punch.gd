@@ -2,7 +2,7 @@ extends Sprite
 
 onready var colli = $area2d/CollisionShape2D
 
-export(Vector2) var force := Vector2(1000, 0)
+export(Vector2) var force := Vector2(600, 0)
 
 
 func _ready() -> void:

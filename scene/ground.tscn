@@ -6,6 +6,9 @@
 extents = Vector2( 24.9645, 24.9609 )
 
 [node name="ground" type="StaticBody2D"]
+z_index = 10
+collision_layer = 4
+collision_mask = 9
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.172549, 0.156863, 0.141176, 1 )

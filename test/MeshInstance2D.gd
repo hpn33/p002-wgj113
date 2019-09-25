@@ -18,7 +18,7 @@ func make_mesh():
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	var m = MeshInstance2D.new()
 	mesh = arr_mesh
-	print(mesh)
+#	print(mesh)
 
 
 #func _process(delta: float) -> void:
