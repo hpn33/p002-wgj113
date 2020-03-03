@@ -44,18 +44,6 @@ position = Vector2( 2618.03, 1950.85 )
 [node name="Hero" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1927.55, 2142.15 )
 
-[node name="movement" parent="Hero" index="1"]
-editor/display_folded = true
-
-[node name="Pivot" parent="Hero" index="2"]
-editor/display_folded = true
-
-[node name="wdHolder" parent="Hero" index="4"]
-editor/display_folded = true
-
-[node name="StateMachine" parent="Hero" index="5"]
-editor/display_folded = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 3142.77, 2116.83 )
 current = true
@@ -84,6 +72,5 @@ margin_right = -806.0
 margin_bottom = -205.719
 reference_path = NodePath("../../Hero/movement")
 properties = PoolStringArray( "velocity", "rotation" )
-
 
 [editable path="Hero"]
